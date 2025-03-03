@@ -1,0 +1,57 @@
+name = input.Name;
+link = "https://creatorapp.zohopublic.eu/teknobu/apexcollections/record-pdf/Admin_Letter_Export/" + input.ID + "/Letter/9z7EWEwJj6fpY1WD1w4OGB397Aw6ZU9QNknPPqwD4Bhgz52EzCuzOSf19VFxSTyjuu1EybeVgJEUWQHYmhFBxghykyNz3DCQgZZJ";
+data = invokeurl
+[
+	url :link
+	type :GET
+];
+// info data;
+input.Letter_1 = data;
+base_encode = zoho.encryption.base64Encode(data);
+v_EncodedCredentials = zoho.encryption.base64Encode(thisapp.variables.ClickSend.ClickSendEmail + ":" + thisapp.variables.ClickSend.ClickSendKey);
+headersMap = Map();
+headersMap.put("Authorization","Basic " + v_EncodedCredentials);
+headersMap.put("Content-Type","application/json");
+parameterMap = Map();
+parameterMap.put("content",base_encode);
+response_upload = invokeurl
+[
+	url :"https://rest.clicksend.com/v3/uploads"
+	type :POST
+	parameters:parameterMap.toString()
+	headers:headersMap
+];
+response_url = response_upload.getJson("data").getJson("_url");
+// input.Letter_1_URL = response_url;
+postList = List();
+postMap = Map();
+postMap.put("address_name","test CRM MASTERS 2");
+postMap.put("address_state","Haryana");
+postMap.put("address_postal_code","122018");
+postMap.put("address_city","Gurgaon");
+postMap.put("address_country","IN");
+postMap.put("address_line_1","Vipul Trade Centre");
+postMap.put("return_address_id","711723");
+postList.add(postMap);
+// info postList ;
+finalMap = Map();
+finalMap.put("template_used","1");
+finalMap.put("colour","0");
+finalMap.put("duplex","1");
+finalMap.put("file_url",response_url);
+finalMap.put("recipients",postList);
+info finalMap;
+res_Api = invokeurl
+[
+	url :"https://rest.clicksend.com/v3/post/letters/send"
+	type :POST
+	parameters:finalMap.toString()
+	headers:headersMap
+];
+sendmail
+[
+	from :zoho.loginuserid
+	to :"simran@crm-masters.com"
+	subject :"data"
+	message :res_Api
+]
