@@ -1,0 +1,78 @@
+
+void test(int rid)
+{
+	res = Customer[ID == rid];
+	c_id = res.ID;
+	name = res.Name;
+	email = res.Email;
+	// info rid;
+	date_of_birth = res.Date_of_Birth;
+(* // contact_number = res.Contact_Number;
+  customer_status = res.Customer_Status;
+// engagement_status = res.Engagement_Status;
+// bank = res.Bank;
+// product = res.Product;
+// outstanding_balance = res.Outstanding_Balance;
+// currency = res.Currency;
+// passport_number = res.Passport_Number;
+// address_on_passport = res.Address_on_Passport;
+// sms_start_time = res.SMS_Start_Time;
+// first_response_sms = res.First_Response_SMS;
+// first_response_time = res.First_Response_Time;
+// engagement_score = res.Engagement_Score;
+// AI_message_log = res.AI_Message_Log;
+	letter1 = res.Letter_1;
+	letter2 = res.Letter_2;
+	letter3 = res.Letter_3;
+// link = "https://creatorapp.zohopublic.eu/teknobu/apexcollections/record-pdf/Admin_Letter_Export/183282000003207207/Letter/9z7EWEwJj6fpY1WD1w4OGB397Aw6ZU9QNknPPqwD4Bhgz52EzCuzOSf19VFxSTyjuu1EybeVgJEUWQHYmhFBxghykyNz3DCQgZZJ";
+// data = invokeurl
+// [
+// url :link
+// type :GET
+// ];
+// info data;
+// res.Letter_1=data;
+// input.Letter_1=data;
+	mrn_doc = "https://creatorapp.zohopublic.eu/api/v2/teknobu/apexcollections/report/Admin_Letter_Export/183282000003207207/Letter_1/download";
+	// info mrn_doc;
+	file_object = invokeurl
+	[
+		url :mrn_doc
+		type :GET
+		connection:"creatornew"
+	];
+	info "pd" + file_object;
+	
+	endo=zoho.encryption.base64Encode(file_object);
+	info "encode"+endo;
+// headers_map=Map();
+// headers_map.put("Accept","application/vnd.api+json");
+// folder_id = "eflzw845ec69c6c84447d88a319f30c8458ef"; 
+// myurl = encodeUrl("test.pdf");
+// upload_dd = zoho.workdrive.uploadFile(file_object, folder_id, myurl, true, "zoho_workdrive_connection1");	
+// // info upload_dd;
+// file_info=upload_dd.getJSON("data").getjson("attributes").getJSON("resource_id");
+// info "ff"+file_info;
+// att_map=Map();
+// file_data = Map();
+// file_data.put("resource_id",file_info);
+// file_data.put("link_name","test");
+// file_data.put("request_user_data","false");
+// file_data.put("allow_download","true"); *)
+// file_data.put("role_id","34");
+// // info "mapp"+file_data;
+// att_map.put("attributes",file_data);
+// att_map.put("type","links");
+// final_link_map=Map();
+// final_link_map.put("data",att_map);
+// info final_link_map;
+// res_data = invokeurl
+// [
+// url :"https://www.zohoapis.eu/workdrive/api/v1/links"
+// type : POST
+// parameters : final_link_map.toString()
+// headers : headers_map
+// connection : "zoho_workdrive_connection1"
+// ];
+// info "public link"+res_data;
+}
